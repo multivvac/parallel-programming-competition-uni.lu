@@ -473,7 +473,7 @@
               const entry = data.find(d => d.id === team.id);
               return {
                 team: team.name,
-                level: entry ? entry.level : 5,
+                level: entry ? entry.level : 0,
                 score: entry ? entry.perf : 0,
                 last: entry ? entry.last : '-',
                 reservation: `ppc-${team.reservation}`
