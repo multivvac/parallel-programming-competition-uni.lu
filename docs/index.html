@@ -69,10 +69,26 @@
       gap: 10px;
     }
 
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
     @media (max-width: 900px) {
+
+      header {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+      }
       .grid {
         display: grid;
         grid-template-columns: 1fr; /* 小屏幕时上下排列 */
+      }
+
+      .about {
+        display: grid;
+        grid-template-columns: 1fr;
       }
     }
 
@@ -310,11 +326,6 @@
     .tr-error td {
       color: #ff8a8a;
     }
-
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
   </style>
 </head>
 
@@ -332,8 +343,7 @@
     <header>
       <i class="nes-pokeball" aria-hidden="true"></i>
       <div>
-        <h1 class="brand-title">1st Parallel Programming Competition@uni.lu</h1>
-        <!-- <div class="brand-sub">NES.css Edition</div> -->
+        <h1 class="brand-title">1st Parallel Programming Competition @uni.lu</h1>
       </div>
       <div class="repo-actions">
         <img src="https://i.imgur.com/6Y7QLfN.png" width="100px" />
