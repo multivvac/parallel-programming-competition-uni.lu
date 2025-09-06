@@ -65,13 +65,14 @@
 
     .grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 20px;
+      grid-template-columns: 3fr 7fr;
+      gap: 10px;
     }
 
     @media (max-width: 900px) {
       .grid {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: 1fr; /* 小屏幕时上下排列 */
       }
     }
 
@@ -197,7 +198,6 @@
     }
 
     .nes-table td.team {
-      /* max-width: 500px; */
       overflow: hidden;
       text-overflow: ellipsis;
     }
@@ -247,7 +247,6 @@
     /* 固定表格布局：避免因内容变化引起列宽跳动 */
     .leaderboard-table {
       table-layout: fixed;
-      width: 60vw;
     }
 
     .leaderboard-table th,
@@ -311,6 +310,11 @@
     .tr-error td {
       color: #ff8a8a;
     }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
   </style>
 </head>
 
@@ -343,44 +347,17 @@
 
     <section class="grid">
       <!-- Left column -->
-      <div>
-        <div class="nes-container is-dark with-title hero">
-          <p class="title">Status</p>
+      <div class="nes-container is-dark with-title hero">
+        <p class="title">Status</p>
 
-          <div class="status-line">
-            <span id="statusBadge" class="nes-badge"><span class="is-warning">STARTS IN</span></span>
-            <span id="statusLabel">Starts in</span>
-            <span id="statusCountdown" class="countdown-time" aria-live="polite">--:--:--</span>
-          </div>
-
-          <progress id="statusProgress" class="nes-progress is-primary" value="0" max="100" hidden></progress>
+        <div class="status-line">
+          <span id="statusBadge" class="nes-badge"><span class="is-warning">STARTS IN</span></span>
+          <span id="statusLabel">Starts in</span>
+          <span id="statusCountdown" class="countdown-time" aria-live="polite">--:--:--</span>
         </div>
 
-        <div class="nes-container is-dark with-title">
-          <p class="title">About</p>
-          <section class="message-list">
-
-            <section class="message -left">
-              <!-- Balloon -->
-              <div class="nes-balloon from-left is-dark" data-typer data-typer-speed="30">
-                <p>The clock is ticking—parallelize as a team or fall behind.</p>
-                <p>Challenge the limits of parallel programming—and take home the prize.</p>
-              </div>
-              <i class="nes-kirby"></i>
-            </section>
-
-            <section class="message -right" style="text-align: right;">
-              <!-- Balloon -->
-              <div class="nes-balloon from-right is-dark" data-typer data-typer-speed="30" data-typer-delay="5000">
-                <p>Contest window: 9AM - 8PM </p>
-                <p>Join us at MNO, room 1.010</p>
-              </div>
-              <i class="nes-charmander"></i>
-            </section>
-          </section>
-        </div>
+        <progress id="statusProgress" class="nes-progress is-primary" value="0" max="100" hidden></progress>
       </div>
-
       <!-- Right column -->
       <div>
         <div class="nes-container is-dark with-title">
@@ -410,7 +387,27 @@
         </div>
       </div>
     </section>
+    <div class="nes-container is-dark with-title">
+      <p class="title">About</p>
+      <section class="message-list about">
+        <section class="message -left">
+          <!-- Balloon -->
+          <div class="nes-balloon from-left is-dark" data-typer data-typer-speed="30">
+            <p>The clock is ticking—parallelize as a team or fall behind. Challenge the limits of parallel programming—and take home the prize.</p>
+          </div>
+          <i class="nes-kirby"></i>
+        </section>
 
+        <section class="message -right" style="text-align: right;">
+          <!-- Balloon -->
+          <div class="nes-balloon from-right is-dark" data-typer data-typer-speed="30" data-typer-delay="5000">
+            Contest window: 9AM - 8PM
+            Join us at MNO, room 1.010
+          </div>
+          <i class="nes-charmander"></i>
+        </section>
+      </section>
+    </div>
     <footer style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
       <span class="pill">Organized by Master in High Performance Computing<a
           href="https://www.uni.lu/fstm-en/study-programs/master-in-high-performance-computing/"> @MHPC2025</a>, made
@@ -446,7 +443,16 @@
     if (params.get('repo')) CONFIG.repoUrl = params.get('repo');
     if (params.get('start')) CONFIG.startTime = params.get('start');
 
-    let leaderboardData = [];
+    let leaderboardData = TEAMS.map(team => {
+      const entry = null;
+      return {
+        team: team.name,
+        level: entry ? entry.level : 0,
+        score: entry ? entry.perf : 0,
+        last: entry ? entry.last : '-',
+        reservation: `ppc-${team.reservation}`
+      };
+    });
     // ====== 模拟 API（保留/替换为真实 fetch 均可） ======
     function fetchLeaderboard() {
       return new Promise((resolve, reject) => {
@@ -599,6 +605,7 @@
       year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit'
     });
 
+    renderLeaderboard(leaderboardData);
     // 首次拉取 + 渲染
     async function refreshLeaderboard() {
       try {
