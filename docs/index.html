@@ -466,7 +466,7 @@
     // ====== 模拟 API（保留/替换为真实 fetch 均可） ======
     function fetchLeaderboard() {
       return new Promise((resolve, reject) => {
-        fetch(`https://raw.githubusercontent.com/multivvac/parallel-programming-competition-uni.lu/refs/heads/main/client_progress.csv?_=${Date.now()}`, { cache: 'no-store' })
+        fetch(`https://ppc25-leaderboard-lucky-hall-d5ed.huangweiurob.workers.dev/?_=${Date.now()}`, { cache: 'no-store' })
           .then(response => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
@@ -481,7 +481,7 @@
                 id: id,
                 level: parseInt(level, 10),
                 perf: parseInt(perf, 10),
-                last: last
+                last: parseInt(last, 10)
               };
             });
             const nowIso = new Date().toISOString();
