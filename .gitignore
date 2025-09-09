@@ -41,3 +41,4 @@
 *.dwo
 
 update_csv.py
+git_auto_commit.log
