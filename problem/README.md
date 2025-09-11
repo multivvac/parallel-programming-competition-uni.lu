@@ -9,14 +9,14 @@ cd code
 
 ## Design Your Algorithm
 
-Refer to the [problem statement and template code](./Problem.md) to design your algorithm. Make sure to verify its correctness before moving on.
+Refer to the [problem statement and template code](./problem.md) to design your algorithm. Make sure to verify its correctness before moving on.
 
 ## Develop and Debug Locally
 
 To build the project on your local machine, you will need
-- **CMake ≥ 3.25**
-- **Boost**
-- *CUDA** installed.
+- CMake ≥ 3.25
+- Boost
+- CUDA.
 
 If your local environment does not support these dependencies(or you don't want to install it manually), we recommend using [Mutagen](https://mutagen.io/) to synchronize your code with the HPC cluster. This way, you can write code locally and compile/execute it directly on the cluster.
 
