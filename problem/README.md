@@ -106,11 +106,11 @@ cmake --build build -j
 ```
 
 ## Team Reservations
-| Team               | Reservation |
-|--------------------|-------------|
-| Race Conditioners  |   iris-170  |
-| Ancient-Forest     |   iris-171  |
-| Vector Ninjas      |   iris-172  |
-| Ctrl+C, Ctrl+Vibes |   iris-173  |
-| Cache Queens       |   iris-174  |
-| SIMD Legends       |   iris-175  |
+| Team               |     Node    | Reservation |
+|--------------------|-------------|-------------|
+| Race Conditioners  |   iris-170  |   ppc-2     |
+| Ancient-Forest     |   iris-171  |   ppc-3     |
+| Vector Ninjas      |   iris-172  |   ppc-4     |
+| Ctrl+C, Ctrl+Vibes |   iris-173  |   ppc-5     |
+| Cache Queens       |   iris-174  |   ppc-6     |
+| SIMD Legends       |   iris-175  |   ppc-7     |
