@@ -14,7 +14,7 @@ Refer to the [problem statement and template code](./problem.md) to design your 
 ## Develop and Debug Locally
 
 To build the project on your local machine, you will need
-- CMake ≥ 3.25
+- CMake ≥ 3.5
 - Boost
 - CUDA.
 
